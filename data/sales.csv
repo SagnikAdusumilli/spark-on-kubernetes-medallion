@@ -1,0 +1,11 @@
+order_id,customer_id,customer_name,region,product,category,quantity,unit_price,discount_pct,order_ts,status
+O-001,C001,Alice Johnson,NA,Espresso Beans,Grocery,2,14.99,0.10,2026-01-01T10:15:00Z,COMPLETED
+O-002,C001, Alice Johnson ,NA,Oat Milk,Grocery,1,4.49,0.00,2026-01-01T11:03:00Z,COMPLETED
+O-003,C002,Bob Singh,EU,Notebook,Office,3,3.99,0.05,2026-01-02T09:20:00Z,COMPLETED
+O-004,C002,Bob Singh,EU,USB-C Cable,Electronics,,9.99,0.00,2026-01-02T14:42:00Z,COMPLETED
+O-005,C003,Charlie Chen,APAC,Wireless Mouse,Electronics,1,24.99,0.20,2026-01-03T16:10:00Z,COMPLETED
+O-006,C003,Charlie Chen,APAC,Yoga Mat,Fitness,N/A,29.99,0.00,2026-01-03T17:55:00Z,COMPLETED
+O-007,C004,Dina Patel,NA,Espresso Beans,Grocery,4,14.99,0.15,2026-01-04T08:30:00Z,REFUNDED
+O-008,C005, Evan Kim ,NA,USB-C Cable,Electronics,2,9.99,0.00,2026-01-05T12:05:00Z,COMPLETED
+O-009,C006,Fatima Noor,EU,Oat Milk,Grocery,5,4.49,0.05,2026-01-05T13:45:00Z,CANCELLED
+O-010,C001,Alice Johnson,NA,Wireless Mouse,Electronics,1,24.99,0.00,2026-01-06T09:10:00Z,COMPLETED
