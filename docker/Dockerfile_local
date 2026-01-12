@@ -3,6 +3,9 @@ FROM apache/spark:3.5.1
 USER root
 RUN pip install --no-cache-dir delta-spark==3.2.1
 
+# create an app directory if it doens't already exist
+RUN mkdir -p /opt/app
+
 WORKDIR /opt/app
 
 COPY etl/ /opt/app/etl/
