@@ -24,24 +24,21 @@ spark-submit \
   --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
   --conf spark.kubernetes.container.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME}:${IMAGE_TAG} \
   --conf spark.kubernetes.container.image.pullPolicy=Always \
-  \
   --conf spark.kubernetes.file.upload.path=/tmp \
   --conf spark.jars.ivy=/tmp/.ivy \
-  \
   --conf spark.executor.instances=2 \
   --conf spark.executor.cores=1 \
   --conf spark.executor.memory=1g \
   --conf spark.driver.memory=1g \
-  \
-  --packages io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4 \
-  \
+  --packages io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-cloud-storage:3.3.4 \
   --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
   --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog \
-  \
   --conf spark.hadoop.fs.azure.account.auth.type.${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net=OAuth \
   --conf spark.hadoop.fs.azure.account.oauth.provider.type.${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net=org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider \
   --conf spark.hadoop.fs.azure.account.oauth2.client.id.${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net=${CLIENT_ID} \
   --conf spark.hadoop.fs.azure.account.oauth2.client.secret.${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net=${CLIENT_SECRET} \
   --conf spark.hadoop.fs.azure.account.oauth2.client.endpoint.${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net=https://login.microsoftonline.com/${TENANT_ID}/oauth2/token \
-  \
+  --conf spark.eventLog.enabled=true \
+  --conf spark.eventLog.dir=abfss://sparklogs@${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net/spark-events \
+  --conf spark.history.fs.logDirectory=abfss://sparklogs@${STORAGE_ACCOUNT_NAME}.dfs.core.windows.net/spark-events \
   local:///opt/app/etl/medallion_etl_adls.py
