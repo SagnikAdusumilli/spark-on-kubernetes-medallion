@@ -16,10 +16,11 @@ def main():
     #Raw Data Path
     raw_data_path = "file:/opt/app/data"
 
-    # Outputs (inside container)
+    # Outputs (when running in local mode)
     bronze_path = "file:/opt/app/outputs/bronze/sales"
     silver_path = "file:/opt/app/outputs/silver/sales"
     gold_path   = "file:/opt/app/outputs/gold/sales_agg"
+
 
     sales_df_raw = spark.read.option("header", "true").csv(f"{raw_data_path}/sales.csv")
 

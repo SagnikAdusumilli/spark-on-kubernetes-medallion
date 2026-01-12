@@ -3,17 +3,18 @@ FROM apache/spark:3.5.1
 USER root
 RUN pip install --no-cache-dir delta-spark==3.2.1
 
-# create an app directory if it doens't already exist
 RUN mkdir -p /opt/app
-
 WORKDIR /opt/app
 
 COPY etl/ /opt/app/etl/
 COPY data/ /opt/app/data/
-
 RUN mkdir -p /opt/app/outputs
-RUN mkdir -p /home/spark/.ivy2 && chown -R spark:spark /home/spark
+
+# MUST be after COPY (otherwise COPY reintroduces root-owned files)
+RUN chown -R spark:spark /opt/app \
+ && chmod -R u+rwX /opt/app
+
+RUN mkdir -p /home/spark/.ivy2 \
+ && chown -R spark:spark /home/spark/.ivy2
 
 USER spark
-
-# Spark entry point dynamically injected by Spark when callin gKumbernetes API
